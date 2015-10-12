@@ -1,0 +1,15 @@
+name: Barkeeper
+author: caliog
+website: http://www.caliog.org
+main: org.caliog.Barkeeper.Barkeeper
+version: 0.1.1
+
+commands:
+    barkeeper:
+        usage: /barkeeper
+        description: Shows information about the plugin!
+    hotbar:
+        usage: /hotbar [speed] <message>
+        description: Broadcasts an [animated] message on the hotbar!
+    centerbar:
+        usage: /centerbar message

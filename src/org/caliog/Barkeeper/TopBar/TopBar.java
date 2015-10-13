@@ -1,10 +1,12 @@
 package org.caliog.Barkeeper.TopBar;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.caliog.Barkeeper.Barkeeper;
@@ -53,6 +55,22 @@ public class TopBar {
 
 	    }
 	}, time * 20L);
+    }
+
+    public static void updateBar(final Player player, final String message, int time) {
+	updateBar(player, message);
+	Manager.scheduleTask(new Runnable() {
+
+	    @Override
+	    public void run() {
+		updateBar(player, message, 0F);
+
+	    }
+	}, time);
+    }
+
+    public static void updateBar(Player player, String message) {
+	updateBar(player, message, 1F);
     }
 
     public static void updateBar(Player player, String message, float p) {
@@ -147,6 +165,23 @@ public class TopBar {
     public static FakeEntity getEntity(Player player) {
 	return map.get(player);
 
+    }
+
+    public static void broadcast(String mainMessage, int time, World world) {
+	Collection<? extends Player> list = Bukkit.getOnlinePlayers();
+	if (world != null)
+	    list = world.getPlayers();
+	for (Player player : list) {
+	    updateBar(player, mainMessage, time);
+	}
+    }
+
+    public static void broadcast(String mainMessage, int time) {
+	broadcast(mainMessage, time, null);
+    }
+
+    public static void broadcast(String mainMessage) {
+	broadcast(mainMessage, 30);
     }
 
 }

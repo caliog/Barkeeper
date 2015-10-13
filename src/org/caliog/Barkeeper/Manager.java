@@ -1,8 +1,46 @@
 package org.caliog.Barkeeper;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.caliog.Barkeeper.BottomBar.BottomBar;
+import org.caliog.Barkeeper.CenterBar.CenterBar;
+import org.caliog.Barkeeper.TopBar.TopBar;
+import org.caliog.Barkeeper.Utils.BarConfig;
+import org.caliog.Barkeeper.Utils.BarConfig.Message;
 
 public class Manager {
+
+    public static void send(Player player, Message msg) {
+	switch (BarConfig.getPosition(msg)) {
+	case BOTTOM:
+	    BottomBar.display(player, BarConfig.getMainMessage(msg), BarConfig.isAnimated(msg) ? 8 : 0);
+
+	case CENTER:
+	    CenterBar.display(player, BarConfig.getMainMessage(msg), BarConfig.getSubMessage(msg),
+		    BarConfig.getTime(msg) * 20, BarConfig.isAnimated(msg));
+	case TOP:
+	    TopBar.updateBar(player, BarConfig.getMainMessage(msg), BarConfig.getTime(msg) * 20);
+	default:
+	    break;
+	}
+    }
+
+    public static void broadcast(Message msg) {
+	switch (BarConfig.getPosition(msg)) {
+	case BOTTOM:
+	    BottomBar.broadcast(BarConfig.getMainMessage(msg), BarConfig.isAnimated(msg) ? 8 : 0, null);
+
+	case CENTER:
+	    CenterBar.broadcast(BarConfig.getMainMessage(msg), BarConfig.getSubMessage(msg), null,
+		    (msg.equals(Message.BROADCAST) ? 2 : BarConfig.getTime(msg)) * 20, BarConfig.isAnimated(msg));
+	case TOP:
+	    TopBar.broadcast(BarConfig.getMainMessage(msg),
+		    (msg.equals(Message.BROADCAST) ? 2 : BarConfig.getTime(msg)) * 20);
+	default:
+	    break;
+	}
+    }
+
     public static int scheduleRepeatingTask(Runnable r, long d, long p) {
 	return Bukkit.getScheduler().scheduleSyncRepeatingTask(Barkeeper.plugin, r, d, p);
     }
@@ -32,4 +70,5 @@ public class Manager {
 	}, l);
 	return taskId;
     }
+
 }

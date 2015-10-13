@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class NMSUtil extends org.caliog.Barkeeper.BottomBar.NMSUtil {
     public void sendHotBar(Player player, String msg) {
 	IChatBaseComponent bc = IChatBaseComponent.ChatSerializer.a("{'text': '" + msg + "'}");
-	PacketPlayOutChat packet = new PacketPlayOutChat(bc, (byte) 0);
+	PacketPlayOutChat packet = new PacketPlayOutChat(bc, (byte) 2);
 	sendPacket(player, packet);
     }
 

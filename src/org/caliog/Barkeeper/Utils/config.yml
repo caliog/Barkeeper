@@ -1,0 +1,26 @@
+login:
+  enable: true
+  position: BOTTOM
+  animated: true
+  message: "&1%PLAYER% &6logged in to &a%WORLD%!"
+level-up:
+  enable: true
+  position: CENTER
+  message: "&6Congratulations!"
+  sub-message: "&aLevel &6%LEVEL%"
+welcome-message:
+  enable: true
+  position: CENTER
+  message: "&6Welcome to the Server"
+  sub-message: ""
+first-join:
+  enable: true
+  position: BOTTOM
+  animated: true
+  message: "&1%PLAYER% joined the server!"
+broadcast:
+  enable: true
+  position: BOTTOM
+  animated: true
+  time: 15
+  message: "&2Find information at website.org"

@@ -10,29 +10,33 @@ import org.caliog.Barkeeper.Utils.BarConfig.Message;
 
 public class BarListener implements Listener {
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onJoin(PlayerJoinEvent event) {
-	if (event.getPlayer().hasPlayedBefore()) {
-	    if (BarConfig.isEnabled(Message.LOGIN))
-		Manager.broadcast(Message.LOGIN);
-
-	} else {
-	    if (BarConfig.isEnabled(Message.WM)) {
-		Manager.send(event.getPlayer(), Message.WM);
-	    }
-	    if (BarConfig.isEnabled(Message.FJ)) {
-		Manager.broadcast(Message.FJ);
-	    }
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onJoin(PlayerJoinEvent event) {
+		if (event.getPlayer().hasPlayedBefore()) {
+			if (BarConfig.isEnabled(Message.LOGIN)) {
+				Manager.broadcast(Message.LOGIN, event.getPlayer().getName(), event.getPlayer().getWorld().getName(),
+						String.valueOf(event.getPlayer().getLevel()));
+			}
+		} else {
+			if (BarConfig.isEnabled(Message.WM)) {
+				Manager.send(event.getPlayer(), Message.WM, event.getPlayer().getName(),
+						event.getPlayer().getWorld().getName(), String.valueOf(event.getPlayer().getLevel()));
+			}
+			if (BarConfig.isEnabled(Message.FJ)) {
+				Manager.broadcast(Message.FJ, event.getPlayer().getName(), event.getPlayer().getWorld().getName(),
+						String.valueOf(event.getPlayer().getLevel()));
+			}
+		}
 	}
-    }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onLevelUp(PlayerLevelChangeEvent event) {
-	if (BarConfig.isEnabled(Message.LVLUP)) {
-	    if (event.getOldLevel() + 1 == event.getNewLevel()) {
-		Manager.send(event.getPlayer(), Message.LVLUP);
-	    }
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onLevelUp(PlayerLevelChangeEvent event) {
+		if (BarConfig.isEnabled(Message.LVLUP)) {
+			if (event.getOldLevel() + 1 == event.getNewLevel()) {
+				Manager.send(event.getPlayer(), Message.LVLUP, event.getPlayer().getName(),
+						event.getPlayer().getWorld().getName(), String.valueOf(event.getPlayer().getLevel()));
+			}
+		}
 	}
-    }
 
 }

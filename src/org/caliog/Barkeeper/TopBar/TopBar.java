@@ -1,7 +1,8 @@
 package org.caliog.Barkeeper.TopBar;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -169,10 +170,14 @@ public class TopBar {
 	}
 
 	public static void broadcast(String mainMessage, int time, World world) {
-		Collection<? extends Player> list = Bukkit.getOnlinePlayers();
-		if (world != null)
-			list = world.getPlayers();
-		for (Player player : list) {
+		List<Player> players = new ArrayList<Player>();
+		if (world == null) {
+			for (World w : Bukkit.getWorlds())
+				players.addAll(w.getPlayers());
+		} else {
+			players = world.getPlayers();
+		}
+		for (Player player : players) {
 			updateBar(player, mainMessage, time);
 		}
 	}

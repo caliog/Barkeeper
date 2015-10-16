@@ -2,13 +2,13 @@ package org.caliog.Barkeeper.BottomBar;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.caliog.Barkeeper.Manager;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class BottomBar {
 	public static void display(Player player, String msg) {
@@ -62,9 +62,10 @@ public class BottomBar {
 	}
 
 	public static void broadcast(String message, int speed, World world) {
-		Collection<? extends Player> players;
+		List<Player> players = new ArrayList<Player>();
 		if (world == null) {
-			players = Bukkit.getOnlinePlayers();
+			for (World w : Bukkit.getWorlds())
+				players.addAll(w.getPlayers());
 		} else {
 			players = world.getPlayers();
 		}

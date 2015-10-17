@@ -26,7 +26,7 @@ public class Barkeeper extends JavaPlugin {
 			file.mkdir();
 		String pN = Bukkit.getServer().getClass().getPackage().getName();
 		this.version = pN.substring(pN.lastIndexOf(".") + 1);
-		if (!version.equals("v1_8_R3")) {
+		if (!(version.equals("v1_8_R3") || version.equals("v1_8_R2"))) {
 			getLogger().warning("This bukkit version is not supported! The features of this plugin may not work.");
 		}
 		plugin = this;

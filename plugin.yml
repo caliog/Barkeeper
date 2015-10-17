@@ -2,7 +2,7 @@ name: Barkeeper
 author: caliog
 website: http://www.caliog.org
 main: org.caliog.Barkeeper.Barkeeper
-version: 1.0.3
+version: 1.0.4
 
 commands:
     barkeeper:

@@ -1,4 +1,4 @@
-package org.caliog.Barkeeper.CenterBar.v1_8_R3;
+package org.caliog.Barkeeper.CenterBar.v1_8_R2;
 
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;

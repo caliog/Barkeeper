@@ -1,23 +1,23 @@
 package org.caliog.Barkeeper.CenterBar.v1_8_R3;
 
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_8_R2.EntityPlayer;
-import net.minecraft.server.v1_8_R2.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_8_R2.Packet;
-import net.minecraft.server.v1_8_R2.PacketPlayOutTitle;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_8_R3.Packet;
+import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 
 public class NMSUtil extends org.caliog.Barkeeper.CenterBar.NMSUtil {
 	public void sendBar(Player player, String title, String subtitle, int fadein, int active, int fadeout) {
 		if (title != null) {
-			PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE,
-					ChatSerializer.a("{\"text\":\"" + title + "\"}"), fadein, active, fadeout);
+			PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"" + title + "\"}"),
+					fadein, active, fadeout);
 			sendPacket(player, packet);
 		}
 		if (subtitle != null) {
-			PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE,
-					ChatSerializer.a("{\"text\":\"" + subtitle + "\"}"), fadein, active, fadeout);
+			PacketPlayOutTitle packet = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, ChatSerializer.a("{\"text\":\"" + subtitle + "\"}"),
+					fadein, active, fadeout);
 			sendPacket(player, packet);
 		}
 	}
